@@ -106,12 +106,6 @@ class ViewController: UIViewController
             displayValue = nil
         }
        println("operandStack = \(operandStack)")
-/*
-        if let value = displayValue {
-               displayValue = brain.pushOperand(value)
-            } else {
-               displayValue = nil
-        } */
      }
     
     @IBAction func clearAll(sender: AnyObject) {
