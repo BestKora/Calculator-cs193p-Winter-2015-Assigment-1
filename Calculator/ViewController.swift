@@ -38,7 +38,6 @@ class ViewController: UIViewController
         } else {
                 display.text = digit
                 userIsInTheMiddleOfTypingANumber = true
-                history.text = history.text!.rangeOfString("=") != nil ? dropLast( history.text!) :  history.text
         }
     }
     
@@ -48,8 +47,7 @@ class ViewController: UIViewController
             enter()
         }
         if let operation = sender.currentTitle {
-            history.text = history.text!.rangeOfString("=") != nil ? dropLast( history.text!) :  history.text
-            history.text =  history.text! + " " + operation + "="
+            addHistory(operation + "=")
 
             switch operation {
                 
@@ -57,9 +55,9 @@ class ViewController: UIViewController
             case "÷": performOperation { $1 / $0 }
             case "+": performOperation { $0 + $1 }
             case "−": performOperation { $1 - $0 }
-            case "√": performOperation { sqrt($0) }
-            case "sin": performOperation { sin($0)}
-            case "cos": performOperation { cos($0) }
+            case "√": performOperation (sqrt)
+            case "sin": performOperation (sin)
+            case "cos": performOperation (cos) 
             case "π": performOperation   { M_PI }
             case "±": performOperation   { -$0 }
             default: break
@@ -97,7 +95,7 @@ class ViewController: UIViewController
  
     @IBAction func enter() {
         if userIsInTheMiddleOfTypingANumber {
-             history.text =  history.text! + " " + display.text!
+            addHistory(display.text!)
         }
         userIsInTheMiddleOfTypingANumber = false
         if let value = displayValue {
@@ -110,6 +108,7 @@ class ViewController: UIViewController
     
     @IBAction func clearAll(sender: AnyObject) {
           history.text =  " "
+          operandStack.removeAll()
           displayValue = 0
     }
  
@@ -162,5 +161,9 @@ class ViewController: UIViewController
         return numberFormatterLoc
     }
     
+    func addHistory(text: String){
+        history.text = history.text!.rangeOfString("=") != nil ? dropLast( history.text!) :  history.text
+        history.text =  history.text! + " " + text
+    }
 }
 
