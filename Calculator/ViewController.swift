@@ -47,7 +47,7 @@ class ViewController: UIViewController
             enter()
         }
         if let operation = sender.currentTitle {
-            addHistory(operation + "=")
+            addHistory(operation + " =")
 
             switch operation {
                 
@@ -162,7 +162,8 @@ class ViewController: UIViewController
     }
     
     func addHistory(text: String){
-        history.text = history.text!.rangeOfString("=") != nil ? dropLast( history.text!) :  history.text
+        history.text = history.text!.rangeOfString("=") != nil
+                        ? dropLast( history.text!) :  history.text
         history.text =  history.text! + " " + text
     }
 }
