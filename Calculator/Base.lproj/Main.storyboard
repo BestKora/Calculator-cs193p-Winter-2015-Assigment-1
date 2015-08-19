@@ -277,7 +277,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-l8-qSK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-l8-qSK">
                                 <rect key="frame" x="16" y="74" width="568" height="21.5"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -419,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJg-qZ-UbL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1256" y="-202"/>
+            <point key="canvasLocation" x="1361" y="-209"/>
         </scene>
     </scenes>
 </document>

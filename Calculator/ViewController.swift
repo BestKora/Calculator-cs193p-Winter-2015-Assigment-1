@@ -27,11 +27,12 @@ class ViewController: UIViewController
         if userIsInTheMiddleOfTypingANumber {
             
              //----- Не пускаем избыточную точку ---------------
-            if (digit == decimalSeparator) && (display.text?.rangeOfString(decimalSeparator) != nil) { return }
+            if (digit == decimalSeparator) && (display.text?.rangeOfString(decimalSeparator) != nil)
+                                                                                           { return }
             //----- Уничтожаем лидирующие нули -----------------
             if (digit == "0") && ((display.text == "0") || (display.text == "-0")){ return }
             if (digit != decimalSeparator) && ((display.text == "0") || (display.text == "-0"))
-                                                                              { display.text = digit ; return }
+                                                                    { display.text = digit ; return }
             //--------------------------------------------------
             
             display.text = display.text! + digit
@@ -80,10 +81,10 @@ class ViewController: UIViewController
         }
     }
 
-    
     private func performOperation (operation: (Double, Double) -> Double ){
         if operandStack.count >= 2 {
-            displayValue = operation (operandStack.removeLast() , operandStack.removeLast())
+            displayValue = operation (operandStack.removeLast() ,
+                                                operandStack.removeLast())
             enter()
         } else {
             displayValue = nil
@@ -116,7 +117,7 @@ class ViewController: UIViewController
             if count(display.text!) > 1 {
                 display.text = dropLast(display.text!)
             } else {
-                displayValue = nil
+                display.text = "0" 
             }
         }
     }
@@ -142,9 +143,11 @@ class ViewController: UIViewController
         }
         set {
             if (newValue != nil) {
+            // display.text = "\(newValue!)"
                display.text = numberFormatter().stringFromNumber(newValue!)
             } else {
-                display.text = "Error "
+                display.text = " "
+                history.text =  history.text! + " Error"
             }
             userIsInTheMiddleOfTypingANumber = false
 
@@ -161,8 +164,17 @@ class ViewController: UIViewController
     }
     
     func addHistory(text: String){
+        // Удаляем знак =
         history.text = history.text!.rangeOfString("=") != nil
-                        ? dropLast( history.text!) :  history.text
+                        ? (history.text!).stringByReplacingOccurrencesOfString("=", withString: "",
+                                            options: nil, range: nil)
+                        :  history.text
+        // Удаляем Error
+        history.text = history.text!.rangeOfString("Error") != nil
+            ? (history.text!).stringByReplacingOccurrencesOfString("Error", withString: "",
+                options: nil, range: nil)
+            :  history.text
+        //Добавляем text
         history.text =  history.text! + " " + text
     }
 }
