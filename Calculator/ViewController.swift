@@ -42,7 +42,6 @@ class ViewController: UIViewController
         }
     }
     
-    
     @IBAction func operate(sender: UIButton) {
         if userIsInTheMiddleOfTypingANumber {
             enter()
@@ -147,7 +146,7 @@ class ViewController: UIViewController
                display.text = numberFormatter().stringFromNumber(newValue!)
             } else {
                 display.text = " "
-                history.text =  history.text! + " Error"
+                addHistory( "= Error")
             }
             userIsInTheMiddleOfTypingANumber = false
 
