@@ -142,7 +142,7 @@ class ViewController: UIViewController
         }
         set {
             if (newValue != nil) {
-            // display.text = "\(newValue!)"
+              // display.text = "\(newValue!)"
                display.text = numberFormatter().stringFromNumber(newValue!)
             } else {
                 display.text = " "
