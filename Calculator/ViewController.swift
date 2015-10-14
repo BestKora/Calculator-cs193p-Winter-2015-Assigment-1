@@ -66,12 +66,12 @@ class ViewController: UIViewController
          }
     }
     
-    private func performOperation (operation: () -> Double ){
+    @nonobjc  func performOperation (operation: () -> Double ){
         displayValue = operation ()
         enter()
     }
  
-    func performOperation (operation: Double -> Double ){
+    @nonobjc func performOperation (operation: Double -> Double ){
         if operandStack.count >= 1 {
             displayValue = operation (operandStack.removeLast())
             enter()
@@ -80,7 +80,7 @@ class ViewController: UIViewController
         }
     }
 
-    private func performOperation (operation: (Double, Double) -> Double ){
+    @nonobjc func performOperation (operation: (Double, Double) -> Double ){
         if operandStack.count >= 2 {
             displayValue = operation (operandStack.removeLast() ,
                                                 operandStack.removeLast())
@@ -102,7 +102,7 @@ class ViewController: UIViewController
         }else {
             displayValue = nil
         }
-       println("operandStack = \(operandStack)")
+       print("operandStack = \(operandStack)")
      }
     
     @IBAction func clearAll(sender: AnyObject) {
@@ -113,8 +113,8 @@ class ViewController: UIViewController
  
     @IBAction func backSpace(sender: AnyObject) {
         if userIsInTheMiddleOfTypingANumber {
-            if count(display.text!) > 1 {
-                display.text = dropLast(display.text!)
+            if (display.text!).characters.count > 1 {
+                display.text = String((display.text!).characters.dropLast())
             } else {
                 display.text = "0" 
             }
@@ -124,7 +124,7 @@ class ViewController: UIViewController
     @IBAction func plusMinus(sender: UIButton) {
         if userIsInTheMiddleOfTypingANumber {
             if (display.text!.rangeOfString("-") != nil) {
-                display.text = dropFirst(display.text!)
+                display.text = String((display.text!).characters.dropFirst())
             } else {
                 display.text = "-" + display.text!
             }
@@ -166,12 +166,12 @@ class ViewController: UIViewController
         // Удаляем знак =
         history.text = history.text!.rangeOfString("=") != nil
                         ? (history.text!).stringByReplacingOccurrencesOfString("=", withString: "",
-                                            options: nil, range: nil)
+                                            options: [], range: nil)
                         :  history.text
         // Удаляем Error
         history.text = history.text!.rangeOfString("Error") != nil
             ? (history.text!).stringByReplacingOccurrencesOfString("Error", withString: "",
-                options: nil, range: nil)
+                options: [], range: nil)
             :  history.text
         //Добавляем text
         history.text =  history.text! + " " + text
